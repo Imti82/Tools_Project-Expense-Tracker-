@@ -1,0 +1,67 @@
+/* Custom CSS (works together with Tailwind) */
+:root { --hole: #ffffff; }
+.dark { --hole: #1e293b; }
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, #eef2ff 0%, #fdf2f8 50%, #ecfeff 100%);
+  background-attachment: fixed;
+}
+.dark body, body.dark-bg {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  background-attachment: fixed;
+}
+
+/* Glass cards */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.08);
+}
+.dark .glass { background: rgba(30, 41, 59, 0.7); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
+.card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(79, 70, 229, 0.18); }
+
+/* Form fields & buttons */
+.field {
+  width: 100%; padding: 0.55rem 0.75rem; border-radius: 0.6rem;
+  border: 1px solid #cbd5e1; background: rgba(255, 255, 255, 0.9); color: #1e293b; outline: none;
+}
+.field:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25); }
+.dark .field { background: #334155; border-color: #475569; color: #f1f5f9; }
+
+.btn-primary {
+  padding: 0.6rem 1rem; border-radius: 0.6rem; font-weight: 600; color: #fff;
+  background: linear-gradient(90deg, #6366f1, #d946ef); transition: transform 0.1s, opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-primary:active { transform: scale(0.97); }
+.btn-ghost {
+  padding: 0.5rem 0.8rem; border-radius: 0.6rem; border: 1px solid #cbd5e1; font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.6); transition: background 0.2s;
+}
+.btn-ghost:hover { background: rgba(99, 102, 241, 0.15); }
+.dark .btn-ghost { background: #334155; border-color: #475569; }
+
+/* List items */
+.item { animation: slideIn 0.3s ease; border-left: 4px solid; }
+.item.income { border-color: #22c55e; }
+.item.expense { border-color: #ef4444; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+
+/* Budget bar & donut chart */
+.bar { transition: width 0.5s ease, background 0.3s; }
+.donut { width: 150px; height: 150px; border-radius: 50%; position: relative; background: #cbd5e1; transition: background 0.4s; }
+.donut-hole {
+  position: absolute; inset: 24px; border-radius: 50%; background: var(--hole);
+  display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; text-align: center;
+}
+
+/* Toast message */
+.toast {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translate(-50%, 80px); opacity: 0;
+  background: #1e293b; color: #fff; padding: 0.6rem 1.2rem; border-radius: 999px;
+  transition: all 0.3s; pointer-events: none; z-index: 50;
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
